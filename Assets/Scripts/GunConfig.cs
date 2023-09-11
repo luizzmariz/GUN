@@ -15,6 +15,7 @@ public class GunConfig : MonoBehaviour
     public bool hasAmmo;
     public GameObject ammo;
     public float ammoQnt = 0;
+    public float maxAmmoQnt = 0;
     public GameObject bullet;
     private GameObject bulletSpawned;
 
@@ -45,10 +46,18 @@ public class GunConfig : MonoBehaviour
         if(!onHand)
         {
             onHand = true;
-            bd.text = ""+backspinDrag;
-            magazineBullets.text = "No bullets";
-            ammoType.text = "";
+            bd.text = "Hop-Up: "+backspinDrag;
             bulletSpeed.text = "";
+            if(hasAmmo)
+            {
+                magazineBullets.text = ammoQnt+" / "+maxAmmoQnt;
+                ammoType.text = "Ammo type: "+ammo.GetComponent<AmmoConfig>().bulletTyp;
+            }
+            else
+            {
+                magazineBullets.text = "No bullets";
+                ammoType.text = "";
+            }
         }
         else
         {
@@ -65,15 +74,16 @@ public class GunConfig : MonoBehaviour
         hasAmmo = true;
         this.ammo = ammunition;
         this.ammoQnt = ammo.GetComponent<AmmoConfig>().ammoQnt;
+        this.maxAmmoQnt = ammo.GetComponent<AmmoConfig>().ammoQnt;
         this.bullet = ammo.GetComponent<AmmoConfig>().bulletType;
-        magazineBullets.text = ""+ammoQnt;
-        ammoType.text = ammo.GetComponent<AmmoConfig>().bulletTyp;
+        magazineBullets.text = ammoQnt+" / "+maxAmmoQnt;
+        ammoType.text = "Ammo type: "+ammo.GetComponent<AmmoConfig>().bulletTyp;
     }
 
     public void ChangeHopup(float Input)
     {
         backspinDrag += Input * 0.0005f;
-        bd.text = ""+backspinDrag;
+        bd.text = "Hop-Up: "+backspinDrag;
     }
 
     public void FireBullet()
@@ -95,7 +105,7 @@ public class GunConfig : MonoBehaviour
         if(hasAmmo)
         {
             ammoQnt--;
-            magazineBullets.text = ""+ammoQnt;
+            magazineBullets.text = ammoQnt+" / "+maxAmmoQnt;
             if(ammoQnt == 0)
             {
                 hasAmmo = false;
