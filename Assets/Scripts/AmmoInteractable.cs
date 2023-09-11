@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunInteractable : Interactable
+public class AmmoInteractable : Interactable
 {
+    
     private GameObject gunHolder;
     private GameObject itens;
     // Start is called before the first frame update
@@ -36,13 +37,8 @@ public class GunInteractable : Interactable
             gunHolder.transform.GetChild(0).position = gameObject.transform.position;
             gunHolder.transform.GetChild(0).SetParent(itens.transform);
             gameObject.transform.SetParent(gunHolder.transform);
-            //gunHolder.transform.GetChild(0).localPosition = new Vector3(0,0,0);
-            //gunHolder.transform.GetChild(0).localRotation = new Quaternion(0,1,0,0);
-
-            gameObject.transform.localPosition = new Vector3(0,0,0);
-            gameObject.transform.localRotation = new Quaternion(0,1,0,0);
+            gunHolder.transform.GetChild(0).localPosition = new Vector3(0,0,0);
+            gunHolder.transform.GetChild(0).localRotation = new Quaternion(0,1,0,0);
         }
-
-        GetComponent<GunConfig>().PickOrDrop();
     }
 }

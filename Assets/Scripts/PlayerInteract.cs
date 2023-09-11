@@ -50,6 +50,10 @@ public class PlayerInteract : MonoBehaviour
         {
             gunInHand = true;
         }
+        else
+        {
+            gunInHand = false;
+        }
 
         //fire gun
 
