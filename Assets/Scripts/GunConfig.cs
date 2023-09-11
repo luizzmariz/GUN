@@ -9,43 +9,51 @@ public class GunConfig : MonoBehaviour
     private Transform muzzle;
     public float backspinDrag = 0.02f;
     public float springForce = 1.2f;
+    public bool onHand;
 
     //Bullet sets
     public GameObject bullet;
     private GameObject bulletSpawned;
 
-    //UI sets
+    //UI and world sets
     public TMP_Text bd;
-    public TMP_Text bulletSpeed;
-    
+    public TMP_Text bulletSpeed;    
     void Start()
     {
         muzzle = this.gameObject.transform.GetChild(3);
-        bd.text = ""+backspinDrag;
+        onHand = false;
 
+        bd = GameObject.Find("BackspinDrag").GetComponent<TMP_Text>();
+        bulletSpeed = GameObject.Find("BulletSpeed").GetComponent<TMP_Text>();
     }
 
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
-        {
-            FireBullet();
-        }
-        if(Input.mouseScrollDelta.y != 0)
-        {
-            backspinDrag += Input.mouseScrollDelta.y * 0.0005f;
-            bd.text = ""+backspinDrag;
-        }
+        
     }
 
-    void FireBullet()
+    public void PickOrDrop()
     {
-        //bulletSpawned = Instantiate(bullet, muzzle.position, muzzle.rotation, muzzle);
-        bulletSpawned = Instantiate(bullet, muzzle.position, muzzle.rotation);
-        bulletSpawned.GetComponent<BulletConfig>().backspinDrag = this.backspinDrag;
-        bulletSpawned.GetComponent<Rigidbody>().AddForce(transform.forward * -1 * springForce);
+        bd.text = ""+backspinDrag;
+        onHand = !onHand;
+    }
 
-        StartCoroutine(bulletCheck(bulletSpawned));
+    public void ChangeHopup(float Input)
+    {
+        backspinDrag += Input * 0.0005f;
+        bd.text = ""+backspinDrag;
+    }
+
+    public void FireBullet()
+    {
+        if(onHand)
+        {
+            bulletSpawned = Instantiate(bullet, muzzle.position, muzzle.rotation);
+            bulletSpawned.GetComponent<BulletConfig>().backspinDrag = this.backspinDrag;
+            bulletSpawned.GetComponent<Rigidbody>().AddForce(transform.forward * -1 * springForce);
+
+            StartCoroutine(bulletCheck(bulletSpawned));
+        }
     }
 
     IEnumerator bulletCheck(GameObject bulletSpawned)
