@@ -247,6 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backspinDrag: 0.02
   springForce: 1.2
+  onHand: 0
   bullet: {fileID: 6185993755684586879, guid: 60209ba5ee91cbc4bab4f22c5ed963ec, type: 3}
   bd: {fileID: 0}
   bulletSpeed: {fileID: 0}
@@ -278,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf7acc07ce3ff941b8ae985cf792178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptMessage: 
+  promptMessage: Pistol
 --- !u!65 &5880084389973584637
 BoxCollider:
   m_ObjectHideFlags: 0

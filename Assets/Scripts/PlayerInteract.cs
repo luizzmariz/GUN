@@ -34,7 +34,7 @@ public class PlayerInteract : MonoBehaviour
         {
             if(hitInfo.collider.GetComponent<Interactable>() != null)
             {
-                iText.text = "Press F to interact with " + hitInfo.collider.gameObject.name;
+                iText.text = "Press F to interact with " + hitInfo.collider.GetComponent<Interactable>().promptMessage;
                 if(Input.GetKeyDown(KeyCode.F))
                 {
                     hitInfo.collider.GetComponent<Interactable>().BaseInteract();
