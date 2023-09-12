@@ -1110,6 +1110,10 @@ PrefabInstance:
       value: Assault Rifle
       objectReference: {fileID: 0}
     - target: {fileID: 5880084389973584638, guid: 1385f1e325818d04c9dcc133015db5e1, type: 3}
+      propertyPath: fireDelta
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880084389973584638, guid: 1385f1e325818d04c9dcc133015db5e1, type: 3}
       propertyPath: springForce
       value: 1.49
       objectReference: {fileID: 0}

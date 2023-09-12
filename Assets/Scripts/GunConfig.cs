@@ -5,13 +5,17 @@ using TMPro;
 
 public class GunConfig : MonoBehaviour
 {
-    //Gun sets
+    [Header("Gun Sets")]
     private Transform muzzle;
     public float backspinDrag = 0.02f;
     public float springForce = 1.2f;
     public bool onHand;
+    public bool hasMultipleFR;
+    //private float myTime = 0.0F;
+    //public float fireDelta = 0.5F;
+    //private float nextFire = 0.5F;
 
-    //Bullet sets
+    [Header("Bullet Sets")]
     public bool hasAmmo;
     public GameObject ammo;
     public float ammoQnt = 0;
@@ -19,11 +23,12 @@ public class GunConfig : MonoBehaviour
     public GameObject bullet;
     private GameObject bulletSpawned;
 
-    //UI and world sets
+    [Header("UI and World Sets")]
     public TMP_Text bd;
     public TMP_Text bulletSpeed;    
     public TMP_Text magazineBullets;
     public TMP_Text ammoType;
+
     void Start()
     {
         muzzle = this.gameObject.transform.GetChild(3);
@@ -38,7 +43,7 @@ public class GunConfig : MonoBehaviour
 
     void Update()
     {
-        
+        //myTime = myTime + Time.deltaTime;
     }
 
     public void PickOrDrop()
@@ -97,6 +102,14 @@ public class GunConfig : MonoBehaviour
             CheckAmmo();
 
             StartCoroutine(bulletCheck(bulletSpawned));
+
+            /*if(myTime > nextFire)
+            {
+                nextFire = myTime + fireDelta;
+                nextFire = nextFire - myTime;
+                myTime = 0.0F;
+            }*/
+            
         }
     }
 
